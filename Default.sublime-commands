@@ -1,0 +1,109 @@
+[
+    {
+        "caption": "File: Move",
+        "command": "file_manager_move_file",
+    },
+    {
+        "caption": "Folder: Create / New",
+        "command": "file_manager_new_folder",
+    },
+    {
+        "caption": "File: Create / New (Relative)",
+        "command": "file_manager_new_file",
+    },
+    {
+        "caption": "File: Rename",
+        "command": "file_manager_rename_file",
+    },
+    {
+        "caption": "Folder: Rename",
+        "command": "file_manager_rename_folder",
+    },
+    {
+        "caption": "File: Close",
+        "command": "file_manager_close_file",
+    },
+    {
+        "caption": "File: Delete",
+        "command": "file_manager_delete_file",
+    },
+    {
+        "caption": "Folder: Delete",
+        "command": "file_manager_delete_folder",
+    },
+    {
+        "caption": "File: Duplicate",
+        "command": "file_manager_new_file",
+        "args": {
+            "duplicate": true
+        }
+    },
+    {
+        "caption": "File: Open Containing Folder",
+        "command": "file_manager_open_file_location",
+    },
+    {
+        "caption": "File: Copy Path",
+        "command": "file_manager_copy_file_location",
+    },
+    {
+        "caption": "Folder: Copy Path",
+        "command": "file_manager_copy_folder_location",
+    },
+    {
+        "caption": "File: Reveal In Sidebar",
+        "command": "file_manager_reveal_in_side_bar",
+    },
+    {
+        "caption": "Folder: Add",
+        "command": "file_manager_add_folder",
+    },
+    {
+        "caption": "Folder: Remove",
+        "command": "file_manager_remove_folder",
+    },
+    {
+        "caption": "File: Close Other Tabs (WIP)",
+        "command": "chain",
+    },
+    {
+        "caption": "File: Close Selected Tabs (WIP)",
+        "command": "chain",
+    },
+    {
+        "caption": "File: Close Unselected Tabs (WIP)",
+        "command": "chain",
+    },
+    {
+        "caption": "File: Close Tabs Below (WIP)",
+        "command": "chain",
+    },
+    {
+        "caption": "File: Close Tabs To The Right (WIP)",
+        "command": "chain",
+    },
+    {
+        "caption": "File: Close Unmodified Tabs Below (WIP)",
+        "command": "chain",
+    },
+    {
+        "caption": "File: Close Unmodified Tabs To The Right (WIP)",
+        "command": "chain",
+    },
+    {
+        "caption": "File: Close Tabs With Deleted Files (WIP)",
+        "command": "chain",
+    },
+    {
+        "caption": "File: Close Tabs With Deleted Files (WIP)",
+        "command": "chain",
+    },
+    {
+        "caption": "File: Diff Files (WIP)",
+        "command": "chain",
+    },
+    {
+        "caption": "File: Diff Selected Tabs (WIP)",
+        "command": "chain",
+    },
+]
