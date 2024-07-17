@@ -1,19 +1,19 @@
 [
     {
-        "caption": "File: Move",
+        "caption": "File: Move File (IN SIDEBARTOOLS)",
         "command": "file_manager_move_file",
     },
     {
-        "caption": "Folder: Create / New",
+        "caption": "Folder: New",
         "command": "file_manager_new_folder",
     },
     {
-        "caption": "File: Create / New (Relative)",
+        "caption": "File: New File (IN SIDEBARTOOLS)",
         "command": "file_manager_new_file",
     },
     {
-        "caption": "File: Rename",
-        "command": "file_manager_rename_file",
+        "caption": "File: Open File (IN CORE)",
+        "command": "prompt_open_file",
     },
     {
         "caption": "Folder: Rename",
@@ -32,7 +32,7 @@
         "command": "file_manager_delete_folder",
     },
     {
-        "caption": "File: Duplicate",
+        "caption": "File: Duplicate File (IN SIDEBARTOOLS)",
         "command": "file_manager_new_file",
         "args": {
             "duplicate": true
@@ -51,12 +51,8 @@
         "command": "file_manager_copy_folder_location",
     },
     {
-        "caption": "File: Reveal In Sidebar",
-        "command": "file_manager_reveal_in_side_bar",
-    },
-    {
-        "caption": "Folder: Add",
-        "command": "file_manager_add_folder",
+        "caption": "Folder: Add Folder (IN CORE)",
+        "command": "prompt_add_folder",
     },
     {
         "caption": "Folder: Remove",
