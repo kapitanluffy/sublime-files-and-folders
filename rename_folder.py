@@ -1,4 +1,4 @@
-from .folder_utils import get_subdirectories, has_subdirectories, remove_dupe
+from .utils import get_subdirectories, has_subdirectories, remove_dupe
 import sublime
 import sublime_plugin
 import os
