@@ -23,4 +23,5 @@ def remove_dupe(items):
 
 KIND_OPEN = (sublime.KindId.COLOR_BLUISH, "O", "Open")
 KIND_RENAME = (sublime.KindId.COLOR_GREENISH, "R", "Rename")
+KIND_NEW = (sublime.KindId.COLOR_GREENISH, "N", "New")
 KIND_DELETE = (sublime.KindId.COLOR_REDISH, "D", "Delete")
