@@ -48,7 +48,7 @@ class FileManagerRenameFolderCommand(sublime_plugin.WindowCommand):
         return items
 
     def create_select_item(self, value):
-        return sublime.QuickPanelItem("[delete] {}".format(value), [], "", KIND_RENAME)
+        return sublime.QuickPanelItem("[rename] {}".format(value), [], "", KIND_RENAME)
 
     def create_open_item(self, value):
         return sublime.QuickPanelItem("  [open] {}".format(value), [], "", KIND_OPEN)
