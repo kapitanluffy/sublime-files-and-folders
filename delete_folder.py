@@ -15,7 +15,7 @@ class FileManagerDeleteFolderCommand(sublime_plugin.WindowCommand):
         if view is not None and file is not None and os.path.exists(file):
             directory = os.path.dirname(file)
             subdirectories = get_subdirectories(directory)
-            folders = subdirectories + folders
+            folders = [directory] + subdirectories + folders
 
         folders = remove_dupe(folders)
         items = self.create_select_action_items(folders) + self.create_open_action_items(folders)
@@ -52,5 +52,5 @@ class FileManagerDeleteFolderCommand(sublime_plugin.WindowCommand):
         return sublime.QuickPanelItem("[delete] {}".format(value), [], "", kind)
 
     def create_open_item(self, value):
-        kind = (sublime.KindId.COLOR_GREENISH, "O", "Open")
+        kind = (sublime.KindId.COLOR_BLUISH, "O", "Open")
         return sublime.QuickPanelItem("  [open] {}".format(value), [], "", kind)
