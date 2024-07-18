@@ -4,7 +4,7 @@
         "command": "file_manager_move_file",
     },
     {
-        "caption": "Folder: New",
+        "caption": "Folder: New Folder",
         "command": "file_manager_new_folder",
     },
     {
@@ -16,7 +16,7 @@
         "command": "prompt_open_file",
     },
     {
-        "caption": "Folder: Rename",
+        "caption": "Folder: Rename Folder",
         "command": "file_manager_rename_folder",
     },
     {
@@ -28,7 +28,7 @@
         "command": "file_manager_delete_file",
     },
     {
-        "caption": "Folder: Delete",
+        "caption": "Folder: Delete Folder",
         "command": "file_manager_delete_folder",
     },
     {
