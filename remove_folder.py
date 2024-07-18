@@ -1,4 +1,4 @@
-from .utils import KIND_REMOVE, get_subdirectories, has_subdirectories, remove_dupe
+from .utils import KIND_REMOVE
 import sublime
 import sublime_plugin
 
