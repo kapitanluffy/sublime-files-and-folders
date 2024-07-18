@@ -1,3 +1,4 @@
+import sublime
 import os
 
 def has_subdirectories(directory):
@@ -18,3 +19,8 @@ def get_subdirectories(directory):
 def remove_dupe(items):
     seen = {}
     return [seen.setdefault(x, x) for x in items if x not in seen]
+
+
+KIND_OPEN = (sublime.KindId.COLOR_BLUISH, "O", "Open")
+KIND_RENAME = (sublime.KindId.COLOR_GREENISH, "R", "Rename")
+KIND_DELETE = (sublime.KindId.COLOR_REDISH, "D", "Delete")

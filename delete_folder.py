@@ -1,4 +1,4 @@
-from .utils import get_subdirectories, has_subdirectories, remove_dupe
+from .utils import KIND_DELETE, KIND_OPEN, get_subdirectories, has_subdirectories, remove_dupe
 import sublime
 import sublime_plugin
 import os
@@ -26,10 +26,10 @@ class FileManagerDeleteFolderCommand(sublime_plugin.WindowCommand):
             return
         folder = folders[index]
 
-        if folder.kind[2] == "Delete":
+        if folder.kind[2] == KIND_DELETE[2]:
             self.window.run_command('delete_folder', {'dirs': [folder.trigger[9:]], 'prompt': True})
 
-        if folder.kind[2] == "Open":
+        if folder.kind[2] == KIND_OPEN[2]:
             subdirectories = get_subdirectories(folder.trigger[9:])
             items = self.create_select_action_items(subdirectories) + self.create_open_action_items(subdirectories)
             self.window.show_quick_panel(items, lambda index: self.on_done(index, items))
@@ -48,9 +48,7 @@ class FileManagerDeleteFolderCommand(sublime_plugin.WindowCommand):
         return items
 
     def create_select_item(self, value):
-        kind = (sublime.KindId.COLOR_REDISH, "D", "Delete")
-        return sublime.QuickPanelItem("[delete] {}".format(value), [], "", kind)
+        return sublime.QuickPanelItem("[delete] {}".format(value), [], "", KIND_DELETE)
 
     def create_open_item(self, value):
-        kind = (sublime.KindId.COLOR_BLUISH, "O", "Open")
-        return sublime.QuickPanelItem("  [open] {}".format(value), [], "", kind)
+        return sublime.QuickPanelItem("  [open] {}".format(value), [], "", KIND_OPEN)
