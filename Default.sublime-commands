@@ -55,7 +55,7 @@
         "command": "prompt_add_folder",
     },
     {
-        "caption": "Folder: Remove",
+        "caption": "Folder: Remove Folder",
         "command": "file_manager_remove_folder",
     },
     {
