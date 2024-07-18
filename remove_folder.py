@@ -17,7 +17,7 @@ class FileManagerRemoveFolderCommand(sublime_plugin.WindowCommand):
         folder = folders[index]
 
         if folder.kind[2] == KIND_REMOVE[2]:
-            self.window.run_command("remove_folder", {"dirs": [folder.trigger[9:]]})
+            self.window.run_command("remove_folder", {"dirs": [folder.trigger]})
 
     def create_select_action_items(self, directories):
         items = []
