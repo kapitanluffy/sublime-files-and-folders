@@ -59,6 +59,10 @@
         "command": "file_manager_remove_folder",
     },
     {
+        "caption": "File: Reveal in Sidebar",
+        "command": "reveal_in_side_bar"
+    },
+    {
         "caption": "File: Close Other Tabs (WIP)",
         "command": "chain",
     },
