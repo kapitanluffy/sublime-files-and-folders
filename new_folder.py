@@ -33,7 +33,8 @@ class FileManagerNewFolderCommand(sublime_plugin.WindowCommand):
             self.window.show_input_panel('Folder Name:', init_text, lambda v: self.on_input_done(init_text, v), None, None)
 
         if folder.kind[2] == KIND_OPEN[2]:
-            subdirectories = get_subdirectories(folder.trigger[7:])
+            parent_directory = os.path.dirname(folder.trigger[7:])
+            subdirectories = [parent_directory] + get_subdirectories(folder.trigger[7:])
             items = self.create_select_action_items(subdirectories) + self.create_open_action_items(subdirectories)
             self.window.show_quick_panel(items, lambda index: self.on_done(index, items))
 
