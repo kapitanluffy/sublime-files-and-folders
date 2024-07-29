@@ -15,8 +15,9 @@ class FileManagerNewFolderCommand(sublime_plugin.WindowCommand):
 
         if view is not None and file is not None and os.path.exists(file):
             directory = os.path.dirname(file)
+            parent_directory = os.path.dirname(directory)
             subdirectories = get_subdirectories(directory)
-            folders = [directory] + subdirectories + folders
+            folders = [directory, parent_directory] + subdirectories + folders
 
         folders = remove_dupe(folders)
         items = self.create_select_action_items(folders) + self.create_open_action_items(folders)
