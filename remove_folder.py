@@ -1,4 +1,4 @@
-from .utils import KIND_REMOVE
+from .utils import KIND_REMOVE, get_window_folders
 import sublime
 import sublime_plugin
 
@@ -7,7 +7,7 @@ class FileManagerRemoveFolderCommand(sublime_plugin.WindowCommand):
         return len(self.window.folders()) > 0
 
     def run(self):
-        folders = self.window.folders()
+        folders = get_window_folders(self.window)
         items = self.create_select_action_items(folders)
         self.window.show_quick_panel(items, lambda index: self.on_done(index, items))
 

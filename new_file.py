@@ -1,6 +1,7 @@
 import sublime
 import sublime_plugin
 from os import path, makedirs
+from .utils import get_window_folders
 
 def get_target_dir(filename, basedirectory):
     target_dir: str = path.dirname(filename)
@@ -28,10 +29,11 @@ class FileManagerNewFileCommand(sublime_plugin.WindowCommand):
         is_dupe = kwargs.get('duplicate', False)
         NEW_FILE_NAME = view.file_name() or ""
 
+        folders = get_window_folders(self.window)
         directory = path.dirname(NEW_FILE_NAME) if NEW_FILE_NAME else path.expanduser('~')
         # for now, fallback to the first directory
-        if directory is None and len(self.window.folders()) > 0:
-            directory = self.window.folders()[0]
+        if directory is None and len(folders) > 0:
+            directory = folders[0]
 
         initial_text = path.join(directory or "", NEW_FILE_NAME)
 

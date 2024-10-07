@@ -1,4 +1,4 @@
-from .utils import KIND_DELETE, KIND_OPEN, get_subdirectories, has_subdirectories, remove_dupe
+from .utils import KIND_DELETE, KIND_OPEN, get_subdirectories, get_window_folders, has_subdirectories, remove_dupe
 import sublime
 import sublime_plugin
 import os
@@ -8,7 +8,7 @@ class FileManagerDeleteFolderCommand(sublime_plugin.WindowCommand):
         return len(self.window.folders()) > 0
 
     def run(self):
-        folders = self.window.folders()
+        folders = get_window_folders(self.window)
         view = self.window.active_view()
         file = view.file_name() if view is not None else None
 

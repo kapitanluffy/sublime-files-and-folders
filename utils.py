@@ -1,6 +1,10 @@
 import sublime
 import os
 
+def get_window_folders(window: sublime.Window):
+    folders = window.folders()
+    return [d for d in folders if os.path.isdir(d)]
+
 def has_subdirectories(directory):
     if os.path.exists(directory) is False:
         return False
