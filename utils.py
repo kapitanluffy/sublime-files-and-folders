@@ -2,12 +2,16 @@ import sublime
 import os
 
 def has_subdirectories(directory):
+    if os.path.exists(directory) is False:
+        return False
     for item in os.listdir(directory):
         if os.path.isdir(os.path.join(directory, item)):
             return True
     return False
 
 def get_subdirectories(directory):
+    if os.path.exists(directory) is False:
+        return []
     subdirectories = []
     for item in os.listdir(directory):
         item_path = os.path.join(directory, item)
