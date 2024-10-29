@@ -5,8 +5,12 @@ from .utils import get_window_folders
 
 def get_target_dir(filename, basedirectory):
     target_dir: str = path.dirname(filename)
-    extra_path = target_dir.replace(basedirectory, "").strip("/\\")
-    return path.abspath(path.join(basedirectory, extra_path))
+    is_path_abs = path.isabs(filename)
+
+    if is_path_abs is True:
+        return target_dir
+
+    return path.abspath(path.join(basedirectory, target_dir))
 
 def get_view_name(view: sublime.View):
     return view.name() or path.basename(view.file_name() or "untitled")
@@ -55,15 +59,16 @@ class FileManagerNewFileCommand(sublime_plugin.WindowCommand):
             new_view.assign_syntax(syntax)
             new_view.run_command("file_manager_insert", {"content": content})
 
-        fullpath = path.join(
-            get_target_dir(filename, basedirectory),
-            path.basename(filename)
-        )
-        directory = path.dirname(fullpath)
+        filename = path.join(get_target_dir(filename, basedirectory), path.basename(filename))
+        directory = path.dirname(filename)
 
         if path.exists(directory) is False:
             makedirs(directory)
-        if path.isdir(fullpath) is True:
-            new_view.settings().set('default_dir', fullpath)
-        if path.isdir(fullpath) is False:
-            new_view.retarget(fullpath)
+
+        # if the provided filename is a directory
+        # set the default_dir of the new file
+        if path.isdir(filename) is True:
+            new_view.settings().set('default_dir', filename)
+
+        if path.isdir(filename) is False:
+            new_view.retarget(filename)
