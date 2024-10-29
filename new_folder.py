@@ -4,7 +4,18 @@ import sublime_plugin
 from os import path, makedirs
 import os
 
+def get_folder_label(folder, base_folders):
+    for base_folder in base_folders:
+        if os.path.commonpath([base_folder, folder]) != base_folder:
+            continue
+        label = os.path.basename(base_folder)
+        return folder.replace(base_folder, f"{os.sep}{label}")
+    return folder
+
+# rework folder commands to show only relevant path not the full path
 class FileManagerNewFolderCommand(sublime_plugin.WindowCommand):
+    BASE_FOLDERS = []
+
     def is_enabled(self):
         return len(self.window.folders()) > 0
 
@@ -17,25 +28,30 @@ class FileManagerNewFolderCommand(sublime_plugin.WindowCommand):
             directory = os.path.dirname(file)
             parent_directory = os.path.dirname(directory)
             subdirectories = get_subdirectories(directory)
-            folders = [directory, parent_directory] + subdirectories + folders
+            folders = [parent_directory] + subdirectories + folders
 
+        # bug shows current directory twice in new
+        # bug shows current directory in open
         folders = remove_dupe(folders)
-        items = self.create_select_action_items(folders) + self.create_open_action_items(folders)
+        self.BASE_FOLDERS = get_window_folders(self.window)
+
+        items = self.create_select_action_items([directory] + folders) + self.create_open_action_items(folders)
         self.window.show_quick_panel(items, lambda index: self.on_done(index, items))
 
-    def on_done(self, index, folders):
+    def on_done(self, index, items):
         if index < 0:
             return
-        folder = folders[index]
+        item = items[index]
+        folder_path = item.kind[3]  # item.trigger[7:]
 
-        if folder.kind[2] == KIND_NEW[2]:
-            init_text = path.join(folder.trigger[7:], '')
+        if item.kind[2] == KIND_NEW[2]:
+            init_text = path.join(folder_path, '')
             self.window.show_input_panel('Folder Name:', init_text, lambda v: self.on_input_done(init_text, v), None, None)
 
-        if folder.kind[2] == KIND_OPEN[2]:
-            parent_directory = os.path.dirname(folder.trigger[7:])
-            subdirectories = [parent_directory] + get_subdirectories(folder.trigger[7:])
-            items = self.create_select_action_items(subdirectories) + self.create_open_action_items(subdirectories)
+        if item.kind[2] == KIND_OPEN[2]:
+            parent_directory = os.path.dirname(folder_path)
+            subdirectories = [parent_directory] + get_subdirectories(folder_path)
+            items = self.create_select_action_items([folder_path] + subdirectories) + self.create_open_action_items(subdirectories)
             self.window.show_quick_panel(items, lambda index: self.on_done(index, items))
 
     def on_input_done(self, basedir, value):
@@ -56,7 +72,9 @@ class FileManagerNewFolderCommand(sublime_plugin.WindowCommand):
         return items
 
     def create_select_item(self, value):
-        return sublime.QuickPanelItem(" [new] {}".format(value), [], "", KIND_NEW)
+        label = get_folder_label(value, self.BASE_FOLDERS)
+        return sublime.QuickPanelItem(" [new] {}".format(label), [], "", KIND_NEW + (value,))
 
     def create_open_item(self, value):
-        return sublime.QuickPanelItem("[open] {}".format(value), [], "", KIND_OPEN)
+        label = get_folder_label(value, self.BASE_FOLDERS)
+        return sublime.QuickPanelItem("[open] {}".format(label), [], "", KIND_OPEN + (value,))
