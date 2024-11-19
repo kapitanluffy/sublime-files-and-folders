@@ -19,6 +19,17 @@ class FileManagerNewFolderCommand(sublime_plugin.WindowCommand):
     def is_enabled(self):
         return len(self.window.folders()) > 0
 
+    def get_parent_directories(self, directory, folders):
+        parent_directory_subdirectories = get_subdirectories(directory)
+        depth = 1000
+        while directory not in folders:
+            if depth <= 0:
+                break
+            directory = os.path.dirname(directory)
+            parent_directory_subdirectories = parent_directory_subdirectories + get_subdirectories(directory)
+            depth = depth - 1
+        return parent_directory_subdirectories
+
     def run(self):
         folders = get_window_folders(self.window)
         view = self.window.active_view()
@@ -28,14 +39,14 @@ class FileManagerNewFolderCommand(sublime_plugin.WindowCommand):
             directory = os.path.dirname(file)
             parent_directory = os.path.dirname(directory)
             subdirectories = get_subdirectories(directory)
-            folders = [parent_directory] + subdirectories + folders
+            parent_directory_subdirectories = self.get_parent_directories(parent_directory, folders) if directory not in folders else []
+            folders = [directory, parent_directory] + subdirectories + parent_directory_subdirectories + folders
 
-        # bug shows current directory twice in new
         # bug shows current directory in open
         folders = remove_dupe(folders)
         self.BASE_FOLDERS = get_window_folders(self.window)
 
-        items = self.create_select_action_items([directory] + folders) + self.create_open_action_items(folders)
+        items = self.create_select_action_items(folders) + self.create_open_action_items(folders)
         self.window.show_quick_panel(items, lambda index: self.on_done(index, items))
 
     def on_done(self, index, items):
