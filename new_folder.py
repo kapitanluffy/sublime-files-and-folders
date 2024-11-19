@@ -50,8 +50,8 @@ class FileManagerNewFolderCommand(sublime_plugin.WindowCommand):
 
         if item.kind[2] == KIND_OPEN[2]:
             parent_directory = os.path.dirname(folder_path)
-            subdirectories = [parent_directory] + get_subdirectories(folder_path)
-            items = self.create_select_action_items([folder_path] + subdirectories) + self.create_open_action_items(subdirectories)
+            subdirectories = [parent_directory] + get_subdirectories(parent_directory)
+            items = self.create_select_action_items([parent_directory] + subdirectories) + self.create_open_action_items(subdirectories)
             self.window.show_quick_panel(items, lambda index: self.on_done(index, items))
 
     def on_input_done(self, basedir, value):
