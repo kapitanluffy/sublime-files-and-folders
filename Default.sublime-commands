@@ -63,47 +63,47 @@
         "command": "reveal_in_side_bar"
     },
     {
-        "caption": "File: Close Other Tabs (WIP)",
-        "command": "chain",
+        "caption": "File: Close Other Tabs",
+        "command": "file_manager_close_tabs_other",
     },
     {
-        "caption": "File: Close Selected Tabs (WIP)",
-        "command": "chain",
+        "caption": "File: Close Selected Tabs",
+        "command": "file_manager_close_tabs_selected",
     },
     {
-        "caption": "File: Close Unselected Tabs (WIP)",
-        "command": "chain",
+        "caption": "File: Close Unselected Tabs",
+        "command": "file_manager_close_tabs_unselected",
     },
     {
-        "caption": "File: Close Tabs Below (WIP)",
-        "command": "chain",
+        "caption": "File: Close Tabs Below",
+        "command": "file_manager_close_tabs_right",
     },
     {
-        "caption": "File: Close Tabs To The Right (WIP)",
-        "command": "chain",
+        "caption": "File: Close Tabs To The Right",
+        "command": "file_manager_close_tabs_right",
     },
     {
-        "caption": "File: Close Unmodified Tabs Below (WIP)",
-        "command": "chain",
+        "caption": "File: Close Unmodified",
+        "command": "file_manager_close_unmodified",
     },
     {
-        "caption": "File: Close Unmodified Tabs To The Right (WIP)",
-        "command": "chain",
+        "caption": "File: Close Unmodified Tabs Below",
+        "command": "file_manager_close_unmodified_right",
     },
     {
-        "caption": "File: Close Tabs With Deleted Files (WIP)",
-        "command": "chain",
+        "caption": "File: Close Unmodified Tabs To The Right",
+        "command": "file_manager_close_unmodified_right",
     },
     {
-        "caption": "File: Close Tabs With Deleted Files (WIP)",
-        "command": "chain",
+        "caption": "File: Close Tabs With Deleted Files",
+        "command": "file_manager_close_deleted",
     },
     {
-        "caption": "File: Diff Files (WIP)",
-        "command": "chain",
+        "caption": "File: Diff Files",
+        "command": "diff_views",
     },
     {
-        "caption": "File: Diff Selected Tabs (WIP)",
-        "command": "chain",
+        "caption": "File: Diff Selected Tabs",
+        "command": "diff_views",
     },
 ]
