@@ -31,13 +31,22 @@ class FileManagerNewFileCommand(sublime_plugin.WindowCommand):
             return
 
         is_dupe = kwargs.get('duplicate', False)
+
+        directory = None
         NEW_FILE_NAME = view.file_name() or ""
 
         folders = get_window_folders(self.window)
-        directory = path.dirname(NEW_FILE_NAME) if NEW_FILE_NAME else path.expanduser('~')
-        # for now, fallback to the first directory
+
+        if NEW_FILE_NAME:
+            directory = path.dirname(NEW_FILE_NAME)
+
+        # for now, use the first directory
         if directory is None and len(folders) > 0:
             directory = folders[0]
+
+        # fallback to user home
+        if directory is None:
+            directory = path.expanduser('~')
 
         initial_text = path.join(directory or "", NEW_FILE_NAME)
 
